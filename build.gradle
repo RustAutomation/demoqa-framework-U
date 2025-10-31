@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.12.0'
+}
+
+group = 'ru.demoqa'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.pkg.jetbrains.space/qameta/p/allure/maven" }
+}
+
+dependencies {
+    // --- JUnit 5 ---
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+
+    // ✅ Allure — актуальные артефакты доступны только с этой версии
+    implementation 'io.qameta.allure:allure-java-commons:2.29.0'
+    implementation 'io.qameta.allure:allure-attachments:2.29.0'
+    implementation 'io.qameta.allure:allure-model:2.29.0'
+    implementation 'io.qameta.allure:allure-generator:2.29.0'
+    implementation 'io.qameta.allure:allure-rest-assured:2.29.0'
+    implementation 'io.qameta.allure:allure-junit5:2.29.0'
+    implementation('com.github.javafaker:javafaker:1.0.2') {
+        exclude group: 'org.yaml', module: 'snakeyaml'
+    }
+    implementation 'org.yaml:snakeyaml:2.3'
+    implementation 'com.konghq:unirest-java:3.14.5'
+    implementation 'com.microsoft.playwright:playwright:1.47.0'
+
+    testImplementation 'io.rest-assured:rest-assured:5.5.0'
+    testImplementation 'org.assertj:assertj-core:3.26.0'
+    testImplementation 'com.github.romankh3:image-comparison:4.4.0'
+    testImplementation 'commons-io:commons-io:2.15.1'
+}
+
+test {
+    useJUnitPlatform()
+}

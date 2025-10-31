@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.VisualTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-10-31T10:12:49" hostname="Rustams-MacBook-Pro.local" time="7.831">
+  <properties/>
+  <testcase name="testVisualComparison()" classname="tests.VisualTest" time="7.831">
+    <failure message="java.lang.AssertionError: Найдены различия: 4.901221264367816%" type="java.lang.AssertionError">java.lang.AssertionError: Найдены различия: 4.901221264367816%
+	at tests.VisualTest.testVisualComparison(VisualTest.java:60)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

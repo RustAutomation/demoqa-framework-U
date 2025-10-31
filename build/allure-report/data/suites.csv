@@ -1,0 +1,7 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","2677","updateUser()","","2025-10-31","failed","2025-10-31","","tests.ApiExampleTest","tests.ApiExampleTest","updateUser"
+"","7861","testVisualComparison()","","2025-10-31","failed","2025-10-31","","tests.VisualTest","tests.VisualTest","testVisualComparison"
+"","294","deleteUser()","","2025-10-31","failed","2025-10-31","","tests.ApiExampleTest","tests.ApiExampleTest","deleteUser"
+"","23015","UI — заполнение Practice Form и сравнение скриншота","","2025-10-31","failed","2025-10-31","","tests.PracticeFormTest","tests.PracticeFormTest","fillPracticeFormAndCompareScreenshot"
+"","288","createUser()","","2025-10-31","failed","2025-10-31","","tests.ApiExampleTest","tests.ApiExampleTest","createUser"
+"","315","getUser()","","2025-10-31","passed","2025-10-31","","tests.ApiExampleTest","tests.ApiExampleTest","getUser"

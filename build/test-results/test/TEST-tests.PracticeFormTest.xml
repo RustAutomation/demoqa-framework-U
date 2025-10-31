@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.PracticeFormTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2025-10-31T10:12:23" hostname="Rustams-MacBook-Pro.local" time="23.0">
+  <properties/>
+  <testcase name="UI — заполнение Practice Form и сравнение скриншота" classname="tests.PracticeFormTest" time="23.0">
+    <failure message="java.lang.AssertionError: Найдены различия: 14.104482562426487%" type="java.lang.AssertionError">java.lang.AssertionError: Найдены различия: 14.104482562426487%
+	at tests.PracticeFormTest.fillPracticeFormAndCompareScreenshot(PracticeFormTest.java:106)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
