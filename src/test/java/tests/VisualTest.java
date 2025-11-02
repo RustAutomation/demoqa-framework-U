@@ -34,6 +34,9 @@ public class VisualTest {
 
         Page page = BrowserManager.newPage();
         page.navigate("https://demoqa.com");
+        // Удаляем баннеры и рекламу
+        page.evaluate("document.querySelectorAll('#fixedban, .Advertisement, iframe').forEach(e => e.remove())");
+
         page.screenshot(new Page.ScreenshotOptions().setPath(new File(actual).toPath()).setFullPage(true));
 
         if (!baselineFile.exists()) {
@@ -42,7 +45,7 @@ public class VisualTest {
             return;
         }
 
-        // 🔥 Вызов сравнения
+        // Вызов сравнения
         double diffPercent = VisualComparator.compareAndHighlight(
                 baselineFile.getPath(), actual, diff
         );
@@ -52,10 +55,10 @@ public class VisualTest {
         AllureHelper.attachImage("Actual (текущий)", Path.of(actual));
         AllureHelper.attachImage("Diff — различия на скриншоте", Path.of(diff));
 
-        // 💬 Логируем процент различий
+        // Логируем процент различий
         AllureHelper.step(String.format("Процент различий: %.2f%%", diffPercent));
 
-        // ❌ Если есть видимые различия — падаем
+        // Если есть видимые различия — падаем
         if (diffPercent > 0.5) {
             throw new AssertionError("Найдены различия: " + diffPercent + "%");
         }
