@@ -2,7 +2,7 @@
 
 ## Что в проекте
 - API тесты (ReqRes) — `ApiExampleTest`
-- Visual тест (DemoQA) — `VisualTest`
+- Visual тест (DemoQA, Тестирование верстки) — `VisualTest`
 - UI тест (Practice Form) — `PracticeFormTest`
 - POM + утилиты для Allure (вложения, шаги)
 - BrowserManager (Playwright)

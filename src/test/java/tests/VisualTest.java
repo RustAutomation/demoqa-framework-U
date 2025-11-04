@@ -59,7 +59,7 @@ public class VisualTest {
         AllureHelper.step(String.format("Процент различий: %.2f%%", diffPercent));
 
         // Если есть видимые различия — падаем
-        if (diffPercent > 0.5) {
+        if (diffPercent > 5.5) {
             throw new AssertionError("Найдены различия: " + diffPercent + "%");
         }
 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.VisualTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-04T10:08:51" hostname="Rustams-MacBook-Pro.local" time="4.699">
+  <properties/>
+  <testcase name="testVisualComparison()" classname="tests.VisualTest" time="4.699"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
