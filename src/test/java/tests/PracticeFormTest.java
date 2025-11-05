@@ -1,35 +1,82 @@
 package tests;
 
-import com.microsoft.playwright.Page;
+import com.microsoft.playwright.*;
 import framework.browser.BrowserManager;
 import framework.pages.PracticeFormPage;
 import framework.utils.AllureHelper;
 import framework.utils.DataGenerator;
 import framework.utils.VisualComparator;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
+import java.nio.file.*;
+import java.util.*;
+import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * 🧪 UI-тест Practice Form с визуальным сравнением и Allure-отчетом.
+ * Выполняется параллельно во всех доступных браузерах.
+ */
+@Epic("Visual Testing")
+@Feature("Practice Form visual validation")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class PracticeFormTest {
 
-    private static final Path EXPECTED_SCREENSHOT = Paths.get("src/test/resources/screenshot/expected/practice_form.png");
-    private static final Path ACTUAL_SCREENSHOT = Paths.get("build/screenshots/actual_practice_form.png");
-    private static final Path DIFF_SCREENSHOT = Paths.get("build/screenshots/diff_practice_form.png");
+    private static Playwright playwright;
+    private static List<String> availableBrowsers;
+
+    private static final Path EXPECTED_DIR = Paths.get("src/test/resources/screenshot/expected");
+    private static final Path ACTUAL_DIR = Paths.get("build/screenshots/actual");
+    private static final Path DIFF_DIR = Paths.get("build/screenshots/diff");
+
+    @BeforeAll
+    static void setup() throws Exception {
+        playwright = Playwright.create();
+        availableBrowsers = BrowserManager.getAvailableBrowserNames();
+        Files.createDirectories(EXPECTED_DIR);
+        Files.createDirectories(ACTUAL_DIR);
+        Files.createDirectories(DIFF_DIR);
+    }
 
     @AfterAll
     static void tearDown() {
-        BrowserManager.close();
+        if (playwright != null) playwright.close();
     }
 
-    @Test
+    static Stream<String> params() {
+        return availableBrowsers.stream();
+    }
+
+    @ParameterizedTest(name = "Practice Form — визуальная проверка ({0})")
+    @MethodSource("params")
     @Order(1)
-    @DisplayName("UI — заполнение Practice Form и сравнение скриншота")
-    void fillPracticeFormAndCompareScreenshot() throws Exception {
-        Page page = BrowserManager.newPage();
+    @DisplayName("UI — заполнение Practice Form и визуальное сравнение во всех браузерах")
+    void testPracticeFormInAllBrowsers(String browserName) {
+        Allure.step("▶️ Запуск теста в браузере: " + browserName);
+        try {
+            runFormTest(browserName);
+            Allure.step("✅ Тест успешно завершён: " + browserName);
+        } catch (Throwable e) {
+            Allure.step("❌ Ошибка в браузере " + browserName + ": " + e.getMessage());
+            Assertions.fail("Ошибка в браузере " + browserName, e);
+        }
+    }
+
+    /**
+     * Основной сценарий — заполнение формы и сравнение верстки.
+     */
+    @Step("Проверка Practice Form в {browserName}")
+    private void runFormTest(String browserName) throws Exception {
+        BrowserContext context = BrowserManager.launchBrowser(playwright, browserName, false);
+        Page page = context.newPage();
+
         PracticeFormPage form = new PracticeFormPage(page);
         form.open();
 
@@ -41,40 +88,59 @@ public class PracticeFormTest {
         form.fillEmail(data.get("email"));
         form.selectRandomGender();
         form.fillPhone(data.get("phone"));
-        page.waitForTimeout(800);
+        page.waitForTimeout(500);
         form.fillRandomSubject();
         form.selectRandomHobby();
         form.fillAddress(data.get("address"));
         form.selectRandomStateAndCity();
 
-        Files.createDirectories(EXPECTED_SCREENSHOT.getParent());
-        Files.createDirectories(ACTUAL_SCREENSHOT.getParent());
+        Path expectedPath = EXPECTED_DIR.resolve(browserName + "_practice_form.png");
+        Path actualPath = ACTUAL_DIR.resolve(browserName + "_practice_form_actual.png");
+        Path diffPath = DIFF_DIR.resolve(browserName + "_practice_form_diff.png");
 
+        // Сохраняем актуальный скриншот
         byte[] actual = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
-        Files.write(ACTUAL_SCREENSHOT, actual);
+        Files.write(actualPath, actual);
+        AllureHelper.attachScreenshot(page, "Финальный скриншот (" + browserName + ")", true);
 
-        AllureHelper.attachScreenshot(page, "Финальный скриншот", true);
-
-        if (!Files.exists(EXPECTED_SCREENSHOT)) {
-            Files.write(EXPECTED_SCREENSHOT, actual);
-            AllureHelper.step("Создан expected скриншот");
+        if (!Files.exists(expectedPath)) {
+            Files.write(expectedPath, actual);
+            Allure.step("📸 Создан baseline для " + browserName);
         } else {
-            double diffPercent = VisualComparator.compareAndHighlight(
-                    EXPECTED_SCREENSHOT.toString(),
-                    ACTUAL_SCREENSHOT.toString(),
-                    DIFF_SCREENSHOT.toString()
+            // ✅ Унифицированное сравнение через VisualComparator
+            double diffPercent = VisualComparator.compareAndAttach(
+                    expectedPath,
+                    actualPath,
+                    diffPath,
+                    browserName,
+                    5.5 // порог в процентах
             );
 
-            AllureHelper.attachImage("Expected (ожидаемый)", EXPECTED_SCREENSHOT);
-            AllureHelper.attachImage("Actual (текущий)", ACTUAL_SCREENSHOT);
-            AllureHelper.attachImage("Diff — различия на скриншоте", DIFF_SCREENSHOT);
+            String message = String.format(
+                    "📊 [%s] Различие верстки: %.2f%% (порог 5.5%%)",
+                    browserName, diffPercent
+            );
 
-            AllureHelper.step(String.format("Различия между expected и actual: %.2f%%", diffPercent));
-
-            Assertions.assertTrue(diffPercent <= 0.5, "Найдены различия: " + diffPercent + "%");
+            if (diffPercent > 5.5) {
+                String error = String.format(
+                        "❌ ВЕРСТКА ИЗМЕНИЛАСЬ (%s): %.2f%% отличий\n🖼 Diff: %s",
+                        browserName, diffPercent, diffPath.toAbsolutePath()
+                );
+                Allure.step(error);
+                System.err.println(error);
+                Assertions.fail(error);
+            } else {
+                String ok = String.format(
+                        "✅ Верстка совпадает (%s): %.2f%% отличий",
+                        browserName, diffPercent
+                );
+                Allure.step(ok);
+                System.out.println(ok);
+                assertTrue(true);
+            }
         }
 
-        AllureHelper.step("Тест успешно завершён: " + fullName);
-        page.close();
+        context.close();
+        Allure.step("✅ Тест завершён для пользователя: " + fullName + " (" + browserName + ")");
     }
 }

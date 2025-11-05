@@ -1,3 +1,4 @@
 "BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
-"0","Visual Tests","0","DemoQA Visual Diff","1","0","Сравнение главной страницы DemoQA с эталоном","0"
-"0","","4","","1","0","","0"
+"0","Visual Testing","2","Cross-browser layout comparison","1","0","","0"
+"0","Visual Testing","1","Practice Form visual validation","2","0","","0"
+"0","","4","","0","0","","0"

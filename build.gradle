@@ -15,6 +15,7 @@ dependencies {
     // --- JUnit 5 ---
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.2'
 
     // ✅ Allure — актуальные артефакты доступны только с этой версии
     implementation 'io.qameta.allure:allure-java-commons:2.29.0'
@@ -38,4 +39,48 @@ dependencies {
 
 test {
     useJUnitPlatform()
+
+    // передаем параметры JUnit через системные свойства
+    systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
+    systemProperty 'junit.jupiter.execution.parallel.mode.default', 'concurrent'
+    systemProperty 'junit.jupiter.execution.parallel.mode.classes.default', 'concurrent'
+    systemProperty 'junit.jupiter.execution.parallel.config.strategy', 'dynamic'
+    systemProperty 'junit.jupiter.execution.parallel.config.dynamic.factor', '0.5'
+
+    // увеличиваем таймаут и буфер логов
+    maxHeapSize = "1024m"
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
 }
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+
+    // ✅ Параллельный запуск
+    systemProperty "junit.jupiter.execution.parallel.enabled", "true"
+    systemProperty "junit.jupiter.execution.parallel.mode.default", "concurrent"
+    systemProperty "junit.jupiter.execution.parallel.mode.classes.default", "concurrent"
+    systemProperty "junit.jupiter.execution.parallel.config.strategy", "dynamic"
+
+    // ✅ Чтобы тесты разных браузеров не мешали друг другу
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(4) ?: 2
+
+    testLogging {
+        events "passed", "failed", "skipped"
+    }
+}
+
+tasks.register('playwrightInstall') {
+    group = "playwright"
+    description = "Install Playwright browsers"
+    doLast {
+        javaexec {
+            mainClass = "com.microsoft.playwright.CLI"
+            classpath = sourceSets.test.runtimeClasspath
+            args = ["install"]
+        }
+    }
+}
+

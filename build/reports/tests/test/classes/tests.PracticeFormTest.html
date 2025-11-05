@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">1</div>
+<div class="counter">3</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">19.369s</div>
+<div class="counter">1m24.89s</div>
 <p>duration</p>
 </div>
 </td>
@@ -51,7 +51,7 @@
 </td>
 <td>
 <div class="infoBox failures" id="successRate">
-<div class="percent">0%</div>
+<div class="percent">66%</div>
 <p>successful</p>
 </div>
 </td>
@@ -66,23 +66,78 @@
 <li>
 <a href="#tab1">Tests</a>
 </li>
+<li>
+<a href="#tab2">Standard output</a>
+</li>
+<li>
+<a href="#tab3">Standard error</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Failed tests</h2>
 <div class="test">
-<a name="fillPracticeFormAndCompareScreenshot()"></a>
-<h3 class="failures">UI — заполнение Practice Form и сравнение скриншота</h3>
+<a name="testPracticeFormInAllBrowsers(String)[3]"></a>
+<h3 class="failures">Practice Form — визуальная проверка (webkit)</h3>
 <span class="code">
-<pre>org.opentest4j.AssertionFailedError: Найдены различия: 60.3732449526842% ==&gt; expected: &lt;true&gt; but was: &lt;false&gt;
-	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at app//org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
-	at app//org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
-	at app//org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
-	at app//tests.PracticeFormTest.fillPracticeFormAndCompareScreenshot(PracticeFormTest.java:74)
+<pre>org.opentest4j.AssertionFailedError: Ошибка в браузере webkit
+	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:42)
+	at app//org.junit.jupiter.api.Assertions.fail(Assertions.java:150)
+	at app//tests.PracticeFormTest.testPracticeFormInAllBrowsers(PracticeFormTest.java:68)
 	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at app//io.qameta.allure.junit5.AllureJunit5.interceptTestTemplateMethod(AllureJunit5.java:59)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base@21.0.8/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base@21.0.8/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base@21.0.8/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base@21.0.8/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+Caused by: java.lang.AssertionError: ❌ Верстка изменилась (webkit): 6.748689058956916% отличий
+	at framework.utils.VisualComparator.compareAndAttach(VisualComparator.java:89)
+	at tests.PracticeFormTest.runFormTest(PracticeFormTest.java:111)
+	at tests.PracticeFormTest.testPracticeFormInAllBrowsers(PracticeFormTest.java:64)
+	... 50 more
 </pre>
 </span>
 </div>
@@ -99,12 +154,47 @@
 </tr>
 </thead>
 <tr>
-<td class="failures">UI — заполнение Practice Form и сравнение скриншота</td>
-<td class="failures">fillPracticeFormAndCompareScreenshot()</td>
-<td class="failures">19.369s</td>
+<td class="success">Practice Form — визуальная проверка (chromium)</td>
+<td class="success">testPracticeFormInAllBrowsers(String)[1]</td>
+<td class="success">34.390s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Practice Form — визуальная проверка (firefox)</td>
+<td class="success">testPracticeFormInAllBrowsers(String)[2]</td>
+<td class="success">28.155s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="failures">Practice Form — визуальная проверка (webkit)</td>
+<td class="failures">testPracticeFormInAllBrowsers(String)[3]</td>
+<td class="failures">22.349s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>&#x1f680; Запущен браузер: chromium
+✅ &#x1f4ca; [chromium] Различия между expected и actual: 0.48% (порог 5.50%)
+&#x1f5bc; Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/chromium_practice_form_diff.png
+✅ Верстка совпадает (chromium): 0.48% отличий
+&#x1f680; Запущен браузер: firefox
+✅ &#x1f4ca; [firefox] Различия между expected и actual: 0.35% (порог 5.50%)
+&#x1f5bc; Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/firefox_practice_form_diff.png
+✅ Верстка совпадает (firefox): 0.35% отличий
+&#x1f680; Запущен браузер: webkit
+</pre>
+</span>
+</div>
+<div id="tab3" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>❌ &#x1f4ca; [webkit] Различия между expected и actual: 6.75% (порог 5.50%)
+&#x1f5bc; Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/webkit_practice_form_diff.png
+</pre>
+</span>
 </div>
 </div>
 <div id="footer">
@@ -114,7 +204,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.7</a> at Nov 4, 2025, 1:08:56 PM</p>
+<a href="http://www.gradle.org">Gradle 8.7</a> at Nov 5, 2025, 8:57:14 PM</p>
 </div>
 </div>
 </body>

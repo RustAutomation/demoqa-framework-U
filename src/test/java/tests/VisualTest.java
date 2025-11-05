@@ -1,68 +1,78 @@
 package tests;
 
-import com.microsoft.playwright.Page;
+import com.microsoft.playwright.*;
 import framework.browser.BrowserManager;
-import framework.utils.AllureHelper;
 import framework.utils.VisualComparator;
-import io.qameta.allure.*;
-import org.junit.jupiter.api.Test;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
+import java.io.ByteArrayInputStream;
+import java.nio.file.*;
+import java.util.stream.Stream;
 
-@Epic("Visual Tests")
-@Feature("DemoQA Visual Diff")
+/**
+ * Параллельные визуальные тесты Playwright с Allure и единым сравнением верстки.
+ */
+@Epic("Visual Testing")
+@Feature("Cross-browser layout comparison")
+@TestMethodOrder(MethodOrderer.DisplayName.class)
 public class VisualTest {
 
-    @Test
-    @Story("Сравнение главной страницы DemoQA с эталоном")
-    void testVisualComparison() throws IOException {
-        File outDir = new File("build/screenshots");
-        if (!outDir.exists() && !outDir.mkdirs())
-            throw new IOException("Cannot create dir: " + outDir.getAbsolutePath());
+    private static Playwright playwright;
 
-        File baselineFile = new File("src/test/resources/screenshot/expected/homepagebaseline.png");
-        File baselineDir = baselineFile.getParentFile();
-        if (!baselineDir.exists() && !baselineDir.mkdirs()) {
-            throw new IOException("Cannot create dir: " + baselineDir.getAbsolutePath());
-        }
+    private static final Path EXPECTED_DIR = Paths.get("src/test/resources/screenshot/expected");
+    private static final Path ACTUAL_DIR = Paths.get("build/screenshots/actual");
+    private static final Path DIFF_DIR = Paths.get("build/screenshots/diff");
 
-        String actual = "build/screenshots/homepageactual.png";
-        String diff = "build/screenshots/homepagediff.png";
+    @BeforeAll
+    static void setUp() throws Exception {
+        playwright = Playwright.create();
+        Files.createDirectories(EXPECTED_DIR);
+        Files.createDirectories(ACTUAL_DIR);
+        Files.createDirectories(DIFF_DIR);
+    }
 
-        Page page = BrowserManager.newPage();
+    static Stream<String> browserProvider() {
+        return BrowserManager.getAvailableBrowserNames().stream();
+    }
+
+    @ParameterizedTest(name = "Визуальное сравнение demoqa.com ({0})")
+    @MethodSource("browserProvider")
+    void visualLayoutTest(String browserName) throws Exception {
+        BrowserContext context = BrowserManager.launchBrowser(playwright, browserName, false);
+        Page page = context.newPage();
+
         page.navigate("https://demoqa.com");
-        // Удаляем баннеры и рекламу
-        page.evaluate("document.querySelectorAll('#fixedban, .Advertisement, iframe').forEach(e => e.remove())");
+        page.waitForLoadState();
 
-        page.screenshot(new Page.ScreenshotOptions().setPath(new File(actual).toPath()).setFullPage(true));
+        Path expected = EXPECTED_DIR.resolve("demoqa_" + browserName + ".png");
+        Path actual = ACTUAL_DIR.resolve("demoqa_actual_" + browserName + ".png");
+        Path diff = DIFF_DIR.resolve("demoqa_diff_" + browserName + ".png");
 
-        if (!baselineFile.exists()) {
-            ImageIO.write(ImageIO.read(new File(actual)), "png", baselineFile);
-            AllureHelper.step("Создан baseline для главной страницы");
-            return;
+        byte[] screenshot = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
+        Files.write(actual, screenshot);
+
+        Allure.addAttachment("Actual Screenshot (" + browserName + ")", "image/png",
+                new ByteArrayInputStream(screenshot), ".png");
+
+        if (!Files.exists(expected)) {
+            Files.write(expected, screenshot);
+            Allure.step("📸 Создан baseline для " + browserName);
+        } else {
+            // ✅ Используем общий метод для проверки
+            VisualComparator.compareAndAttach(expected, actual, diff, browserName, 1.0);
         }
 
-        // Вызов сравнения
-        double diffPercent = VisualComparator.compareAndHighlight(
-                baselineFile.getPath(), actual, diff
-        );
+        context.close();
+        Allure.step("✅ Проверка завершена для браузера: " + browserName);
+    }
 
-        // 📎 Прикладываем все три изображения в Allure
-        AllureHelper.attachImage("Baseline (ожидаемый)", baselineFile.toPath());
-        AllureHelper.attachImage("Actual (текущий)", Path.of(actual));
-        AllureHelper.attachImage("Diff — различия на скриншоте", Path.of(diff));
-
-        // Логируем процент различий
-        AllureHelper.step(String.format("Процент различий: %.2f%%", diffPercent));
-
-        // Если есть видимые различия — падаем
-        if (diffPercent > 5.5) {
-            throw new AssertionError("Найдены различия: " + diffPercent + "%");
-        }
-
-        page.close();
+    @AfterAll
+    static void tearDown() {
+        if (playwright != null) playwright.close();
     }
 }

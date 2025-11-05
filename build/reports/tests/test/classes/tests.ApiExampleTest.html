@@ -29,7 +29,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">3</div>
+<div class="counter">4</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">2.959s</div>
+<div class="counter">12.380s</div>
 <p>duration</p>
 </div>
 </td>
@@ -51,7 +51,7 @@
 </td>
 <td>
 <div class="infoBox failures" id="successRate">
-<div class="percent">25%</div>
+<div class="percent">0%</div>
 <p>successful</p>
 </div>
 </td>
@@ -82,8 +82,12 @@
 	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
 	at app//tests.ApiExampleTest.createUser(ApiExampleTest.java:26)
 	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
 </pre>
 </span>
 </div>
@@ -100,8 +104,39 @@
 	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
 	at app//tests.ApiExampleTest.deleteUser(ApiExampleTest.java:41)
 	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.tryRemoveAndExec(ForkJoinPool.java:1351)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.awaitDone(ForkJoinTask.java:422)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.join(ForkJoinTask.java:651)
+	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+</pre>
+</span>
+</div>
+<div class="test">
+<a name="getUser()"></a>
+<h3 class="failures">getUser()</h3>
+<span class="code">
+<pre>org.opentest4j.AssertionFailedError: expected: &lt;200&gt; but was: &lt;401&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at app//tests.ApiExampleTest.getUser(ApiExampleTest.java:18)
+	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
 </pre>
 </span>
 </div>
@@ -118,8 +153,12 @@
 	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
 	at app//tests.ApiExampleTest.updateUser(ApiExampleTest.java:34)
 	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base@21.0.8/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
 </pre>
 </span>
 </div>
@@ -136,22 +175,22 @@
 </thead>
 <tr>
 <td class="failures">createUser()</td>
-<td class="failures">0.299s</td>
+<td class="failures">3.094s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">deleteUser()</td>
-<td class="failures">0.267s</td>
+<td class="failures">3.096s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
-<td class="success">getUser()</td>
-<td class="success">0.271s</td>
-<td class="success">passed</td>
+<td class="failures">getUser()</td>
+<td class="failures">3.094s</td>
+<td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">updateUser()</td>
-<td class="failures">2.122s</td>
+<td class="failures">3.096s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
@@ -164,7 +203,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.7</a> at Nov 4, 2025, 1:08:56 PM</p>
+<a href="http://www.gradle.org">Gradle 8.7</a> at Nov 5, 2025, 8:57:14 PM</p>
 </div>
 </div>
 </body>
