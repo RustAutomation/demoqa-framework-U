@@ -48,7 +48,7 @@ public class BrowserManager {
                 .setRecordVideoDir(Paths.get("videos/" + browserName))
                 .setIgnoreHTTPSErrors(true));
 
-        System.out.println("🚀 Запущен браузер: " + browserName);
+        System.out.println("Запущен браузер: " + browserName);
         return context;
     }
 
@@ -58,7 +58,7 @@ public class BrowserManager {
     public static void closeAll(BrowserContext context) {
         if (context != null) {
             context.close();
-            System.out.println("🧹 Контекст браузера закрыт.");
+            System.out.println("Контекст браузера закрыт.");
         }
     }
 }

@@ -3,13 +3,8 @@ package tests;
 import com.microsoft.playwright.*;
 import framework.browser.BrowserManager;
 import framework.pages.PracticeFormPage;
-import framework.utils.AllureHelper;
-import framework.utils.DataGenerator;
-import framework.utils.VisualComparator;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
-import io.qameta.allure.Step;
+import framework.utils.*;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -59,12 +54,12 @@ public class PracticeFormTest {
     @Order(1)
     @DisplayName("UI — заполнение Practice Form и визуальное сравнение во всех браузерах")
     void testPracticeFormInAllBrowsers(String browserName) {
-        Allure.step("▶️ Запуск теста в браузере: " + browserName);
+        Allure.step("Запуск теста в браузере: " + browserName);
         try {
             runFormTest(browserName);
-            Allure.step("✅ Тест успешно завершён: " + browserName);
+            Allure.step("Тест успешно завершён: " + browserName);
         } catch (Throwable e) {
-            Allure.step("❌ Ошибка в браузере " + browserName + ": " + e.getMessage());
+            Allure.step("Ошибка в браузере " + browserName + ": " + e.getMessage());
             Assertions.fail("Ошибка в браузере " + browserName, e);
         }
     }
@@ -80,6 +75,9 @@ public class PracticeFormTest {
         PracticeFormPage form = new PracticeFormPage(page);
         form.open();
 
+        // Очистка страницы от баннеров и футеров
+        Tools.removeBanners(page);
+
         Map<String, String> data = DataGenerator.userData();
         String fullName = data.get("firstName") + " " + data.get("lastName");
 
@@ -93,6 +91,10 @@ public class PracticeFormTest {
         form.selectRandomHobby();
         form.fillAddress(data.get("address"));
         form.selectRandomStateAndCity();
+        form.submit();
+
+        // Приводим страницу к единому виду перед сравнением
+        Tools.preparePageForScreenshot(page);
 
         Path expectedPath = EXPECTED_DIR.resolve(browserName + "_practice_form.png");
         Path actualPath = ACTUAL_DIR.resolve(browserName + "_practice_form_actual.png");
@@ -107,23 +109,22 @@ public class PracticeFormTest {
             Files.write(expectedPath, actual);
             Allure.step("📸 Создан baseline для " + browserName);
         } else {
-            // ✅ Унифицированное сравнение через VisualComparator
             double diffPercent = VisualComparator.compareAndAttach(
                     expectedPath,
                     actualPath,
                     diffPath,
                     browserName,
-                    5.5 // порог в процентах
+                    5.5
             );
 
             String message = String.format(
-                    "📊 [%s] Различие верстки: %.2f%% (порог 5.5%%)",
+                    "[%s] Различие верстки: %.2f%% (порог 5.5%%)",
                     browserName, diffPercent
             );
 
             if (diffPercent > 5.5) {
                 String error = String.format(
-                        "❌ ВЕРСТКА ИЗМЕНИЛАСЬ (%s): %.2f%% отличий\n🖼 Diff: %s",
+                        "ВЕРСТКА ИЗМЕНИЛАСЬ (%s): %.2f%% отличий\n🖼 Diff: %s",
                         browserName, diffPercent, diffPath.toAbsolutePath()
                 );
                 Allure.step(error);
@@ -131,7 +132,7 @@ public class PracticeFormTest {
                 Assertions.fail(error);
             } else {
                 String ok = String.format(
-                        "✅ Верстка совпадает (%s): %.2f%% отличий",
+                        "Верстка совпадает (%s): %.2f%% отличий",
                         browserName, diffPercent
                 );
                 Allure.step(ok);
@@ -141,6 +142,6 @@ public class PracticeFormTest {
         }
 
         context.close();
-        Allure.step("✅ Тест завершён для пользователя: " + fullName + " (" + browserName + ")");
+        Allure.step("Тест завершён для пользователя: " + fullName + " (" + browserName + ")");
     }
 }

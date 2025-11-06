@@ -2,6 +2,7 @@ package tests;
 
 import com.microsoft.playwright.*;
 import framework.browser.BrowserManager;
+import framework.utils.Tools;
 import framework.utils.VisualComparator;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Epic;
@@ -53,6 +54,12 @@ public class VisualTest {
         Path actual = ACTUAL_DIR.resolve("demoqa_actual_" + browserName + ".png");
         Path diff = DIFF_DIR.resolve("demoqa_diff_" + browserName + ".png");
 
+        // Очистка страницы от баннеров и футеров
+        Tools.removeBanners(page);
+
+        // Приводим страницу к единому виду перед сравнением
+        Tools.preparePageForScreenshot(page);
+
         byte[] screenshot = page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
         Files.write(actual, screenshot);
 
@@ -61,14 +68,14 @@ public class VisualTest {
 
         if (!Files.exists(expected)) {
             Files.write(expected, screenshot);
-            Allure.step("📸 Создан baseline для " + browserName);
+            Allure.step("Создан baseline для " + browserName);
         } else {
-            // ✅ Используем общий метод для проверки
+            // Используем общий метод для проверки
             VisualComparator.compareAndAttach(expected, actual, diff, browserName, 1.0);
         }
 
         context.close();
-        Allure.step("✅ Проверка завершена для браузера: " + browserName);
+        Allure.step("Проверка завершена для браузера: " + browserName);
     }
 
     @AfterAll

@@ -79,7 +79,7 @@ public final class VisualComparator {
                 Files.newInputStream(diffPath), ".png");
 
         String message = String.format(
-                "📊 [%s] Различия между expected и actual: %.2f%% (порог %.2f%%)\n🖼 Diff: %s",
+                "[%s] Различия между expected и actual: %.2f%% (порог %.2f%%)\n Diff: %s",
                 browserName, diffPercent, threshold, diffPath.toAbsolutePath()
         );
 

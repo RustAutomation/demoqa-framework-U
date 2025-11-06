@@ -81,7 +81,7 @@ public class PracticeFormPage {
         page.click("#city");
         page.waitForSelector("#city .css-26l3qy-menu div");
         int cityIndex = rnd.nextInt(4);
-        page.waitForTimeout(800);
+        page.waitForSelector("#city .css-26l3qy-menu div");
         page.locator("#city .css-26l3qy-menu div").nth(cityIndex).click();
         AllureHelper.step("Выбран city index " + cityIndex);
     }
