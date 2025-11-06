@@ -45,6 +45,9 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.26.0'
     testImplementation 'com.github.romankh3:image-comparison:4.4.0'
     testImplementation 'commons-io:commons-io:2.15.1'
+
+// https://mvnrepository.com/artifact/org.awaitility/awaitility
+    implementation 'org.awaitility:awaitility:4.2.0'
 }
 
 test {
