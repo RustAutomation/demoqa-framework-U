@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.VisualTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-06T06:34:56" hostname="Rustams-MacBook-Pro.local" time="52.885">
+<testsuite name="tests.VisualTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-06T07:48:22" hostname="Rustams-MacBook-Pro.local" time="56.398">
   <properties/>
-  <testcase name="Визуальное сравнение demoqa.com (chromium)" classname="tests.VisualTest" time="15.579"/>
-  <testcase name="Визуальное сравнение demoqa.com (firefox)" classname="tests.VisualTest" time="24.033"/>
-  <testcase name="Визуальное сравнение demoqa.com (webkit)" classname="tests.VisualTest" time="12.44"/>
+  <testcase name="Визуальное сравнение demoqa.com (chromium)" classname="tests.VisualTest" time="24.969"/>
+  <testcase name="Визуальное сравнение demoqa.com (firefox)" classname="tests.VisualTest" time="18.187"/>
+  <testcase name="Визуальное сравнение demoqa.com (webkit)" classname="tests.VisualTest" time="12.604"/>
   <system-out><![CDATA[Запущен браузер: chromium
 ✅ [chromium] Различия между expected и actual: 0.00% (порог 1.00%)
  Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/demoqa_diff_chromium.png
