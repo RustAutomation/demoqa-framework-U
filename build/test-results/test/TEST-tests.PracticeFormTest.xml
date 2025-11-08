@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.PracticeFormTest" tests="3" skipped="0" failures="3" errors="0" timestamp="2025-11-06T07:48:23" hostname="Rustams-MacBook-Pro.local" time="62.92">
+<testsuite name="tests.PracticeFormTest" tests="3" skipped="0" failures="2" errors="0" timestamp="2025-11-08T16:52:48" hostname="Rustams-MacBook-Pro.local" time="66.019">
   <properties/>
-  <testcase name="Practice Form — визуальная проверка (chromium)" classname="tests.PracticeFormTest" time="32.778">
+  <testcase name="Practice Form — визуальная проверка (chromium)" classname="tests.PracticeFormTest" time="18.48">
     <failure message="org.opentest4j.AssertionFailedError: Ошибка в браузере chromium" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Ошибка в браузере chromium
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:42)
 	at app//org.junit.jupiter.api.Assertions.fail(Assertions.java:150)
@@ -56,76 +56,15 @@
 	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-Caused by: java.lang.AssertionError: ❌ Верстка изменилась (chromium): 12.369879823967501% отличий
-	at framework.utils.VisualComparator.compareAndAttach(VisualComparator.java:89)
+Caused by: java.lang.AssertionError: ❌ Верстка изменилась (chromium): 10.610411547911548% отличий
+	at framework.utils.VisualComparator.compareAndAttach(VisualComparator.java:87)
 	at tests.PracticeFormTest.runFormTest(PracticeFormTest.java:112)
 	at tests.PracticeFormTest.testPracticeFormInAllBrowsers(PracticeFormTest.java:59)
 	... 50 more
 </failure>
   </testcase>
-  <testcase name="Practice Form — визуальная проверка (firefox)" classname="tests.PracticeFormTest" time="16.082">
-    <failure message="org.opentest4j.AssertionFailedError: Ошибка в браузере firefox" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Ошибка в браузере firefox
-	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:42)
-	at app//org.junit.jupiter.api.Assertions.fail(Assertions.java:150)
-	at app//tests.PracticeFormTest.testPracticeFormInAllBrowsers(PracticeFormTest.java:63)
-	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
-	at app//io.qameta.allure.junit5.AllureJunit5.interceptTestTemplateMethod(AllureJunit5.java:59)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
-	at java.base@21.0.8/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
-	at java.base@21.0.8/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
-	at java.base@21.0.8/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
-	at java.base@21.0.8/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
-	at java.base@21.0.8/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
-	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-Caused by: java.lang.AssertionError: ❌ Верстка изменилась (firefox): 9.022080741316744% отличий
-	at framework.utils.VisualComparator.compareAndAttach(VisualComparator.java:89)
-	at tests.PracticeFormTest.runFormTest(PracticeFormTest.java:112)
-	at tests.PracticeFormTest.testPracticeFormInAllBrowsers(PracticeFormTest.java:59)
-	... 50 more
-</failure>
-  </testcase>
-  <testcase name="Practice Form — визуальная проверка (webkit)" classname="tests.PracticeFormTest" time="10.177">
+  <testcase name="Practice Form — визуальная проверка (firefox)" classname="tests.PracticeFormTest" time="31.9"/>
+  <testcase name="Practice Form — визуальная проверка (webkit)" classname="tests.PracticeFormTest" time="12.718">
     <failure message="org.opentest4j.AssertionFailedError: Ошибка в браузере webkit" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Ошибка в браузере webkit
 	at app//org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:42)
 	at app//org.junit.jupiter.api.Assertions.fail(Assertions.java:150)
@@ -180,8 +119,8 @@ Caused by: java.lang.AssertionError: ❌ Верстка изменилась (fi
 	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
 	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
 	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
-Caused by: java.lang.AssertionError: ❌ Верстка изменилась (webkit): 12.396435657596372% отличий
-	at framework.utils.VisualComparator.compareAndAttach(VisualComparator.java:89)
+Caused by: java.lang.AssertionError: ❌ Верстка изменилась (webkit): 9.001152663934427% отличий
+	at framework.utils.VisualComparator.compareAndAttach(VisualComparator.java:87)
 	at tests.PracticeFormTest.runFormTest(PracticeFormTest.java:112)
 	at tests.PracticeFormTest.testPracticeFormInAllBrowsers(PracticeFormTest.java:59)
 	... 50 more
@@ -189,13 +128,14 @@ Caused by: java.lang.AssertionError: ❌ Верстка изменилась (we
   </testcase>
   <system-out><![CDATA[Запущен браузер: chromium
 Запущен браузер: firefox
+✅ [firefox] Различия между expected и actual: 2.04% (порог 5.50%)
+ Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/firefox_practice_form_diff.png
+Верстка совпадает (firefox): 2.04% отличий
 Запущен браузер: webkit
 ]]></system-out>
-  <system-err><![CDATA[❌ [chromium] Различия между expected и actual: 12.37% (порог 5.50%)
+  <system-err><![CDATA[❌ [chromium] Различия между expected и actual: 10.61% (порог 5.50%)
  Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/chromium_practice_form_diff.png
-❌ [firefox] Различия между expected и actual: 9.02% (порог 5.50%)
- Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/firefox_practice_form_diff.png
-❌ [webkit] Различия между expected и actual: 12.40% (порог 5.50%)
+❌ [webkit] Различия между expected и actual: 9.00% (порог 5.50%)
  Diff: /Users/rustam/Desktop/javaProject/demoqa-framework/build/screenshots/diff/webkit_practice_form_diff.png
 ]]></system-err>
 </testsuite>

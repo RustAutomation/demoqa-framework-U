@@ -16,8 +16,6 @@ public final class VisualComparator {
 
     private static final Color OVERLAY = new Color(255, 0, 0, 120); // полупрозрачный красный
 
-    private VisualComparator() {}
-
     /**
      * Сравнивает baseline и actual, сохраняет diff и прикрепляет все результаты в Allure.
      *

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="tests.ApiExampleTest" tests="4" skipped="0" failures="3" errors="0" timestamp="2025-11-06T07:48:13" hostname="Rustams-MacBook-Pro.local" time="4.993">
+<testsuite name="tests.ApiExampleTest" tests="4" skipped="0" failures="4" errors="0" timestamp="2025-11-08T16:52:38" hostname="Rustams-MacBook-Pro.local" time="4.132">
   <properties/>
-  <testcase name="getUser()" classname="tests.ApiExampleTest" time="3.855"/>
-  <testcase name="updateUser()" classname="tests.ApiExampleTest" time="3.875">
+  <testcase name="updateUser()" classname="tests.ApiExampleTest" time="4.132">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;200&gt; but was: &lt;401&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;200&gt; but was: &lt;401&gt;
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -20,7 +19,7 @@
 	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
 </failure>
   </testcase>
-  <testcase name="deleteUser()" classname="tests.ApiExampleTest" time="3.875">
+  <testcase name="deleteUser()" classname="tests.ApiExampleTest" time="4.131">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;204&gt; but was: &lt;401&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;204&gt; but was: &lt;401&gt;
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -43,7 +42,25 @@
 	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
 </failure>
   </testcase>
-  <testcase name="createUser()" classname="tests.ApiExampleTest" time="0.428">
+  <testcase name="getUser()" classname="tests.ApiExampleTest" time="4.132">
+    <failure message="org.opentest4j.AssertionFailedError: expected: &lt;200&gt; but was: &lt;401&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;200&gt; but was: &lt;401&gt;
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at app//org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at app//org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:145)
+	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
+	at app//tests.ApiExampleTest.getUser(ApiExampleTest.java:23)
+	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)
+	at java.base@21.0.8/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)
+</failure>
+  </testcase>
+  <testcase name="createUser()" classname="tests.ApiExampleTest" time="4.132">
     <failure message="org.opentest4j.AssertionFailedError: expected: &lt;201&gt; but was: &lt;401&gt;" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: expected: &lt;201&gt; but was: &lt;401&gt;
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -53,11 +70,6 @@
 	at app//org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:531)
 	at app//tests.ApiExampleTest.createUser(ApiExampleTest.java:35)
 	at java.base@21.0.8/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.tryRemoveAndExec(ForkJoinPool.java:1351)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.awaitDone(ForkJoinTask.java:422)
-	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.join(ForkJoinTask.java:651)
 	at java.base@21.0.8/java.util.concurrent.RecursiveAction.exec(RecursiveAction.java:194)
 	at java.base@21.0.8/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)
 	at java.base@21.0.8/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)
